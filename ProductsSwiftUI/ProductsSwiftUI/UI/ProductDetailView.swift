@@ -8,11 +8,43 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    var item: ProductModel
+    
+    @ObservedObject private var productCommentsViewModel: RealProductCommentsViewModel
+    
+    init(item: ProductModel, productCommentsViewModel: RealProductCommentsViewModel) {
+        self.item = item
+        self.productCommentsViewModel = productCommentsViewModel
     }
-}
-
-#Preview {
-    ProductDetailView()
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+//            HeaderImageView(urlString: item.image, height: 150)
+            Text(item.title ?? "").font(.title)
+            HStack{
+                Text("\(item.price ?? 0.0)")
+                    .foregroundStyle(.red)
+                    .font(.title2)
+//                    .overlay {
+//                        Button {
+//                            item.isFavourite = !item.isFavourite
+//                        } label: {
+//                            Image(systemName: item.isFavourite == true ? "star.fill" : "star")
+//                                .foregroundStyle(.yellow)
+//                        }
+//
+//                    }
+            }
+            
+        }
+        .preferredColorScheme(.light)
+        .task {
+            await fetchComments()
+        }
+    }
+    
+    private func fetchComments() async {
+        await productCommentsViewModel.fetchComments()
+        
+    }
 }

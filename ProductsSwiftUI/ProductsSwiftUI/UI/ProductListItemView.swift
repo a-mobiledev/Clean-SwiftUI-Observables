@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct ProductListItemView: View {
+    
+    var item: ProductModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            HeaderImageView(urlString: item.thumbnail ?? "", height: 150)
+            Text(item.title ?? "").font(.title)
+            Text("\(item.price ?? 0.0)")
+                .foregroundStyle(.red)
+                .font(.title2)
+        }
+        .preferredColorScheme(.light)
+        
     }
-}
-
-#Preview {
-    ProductListItemView()
 }

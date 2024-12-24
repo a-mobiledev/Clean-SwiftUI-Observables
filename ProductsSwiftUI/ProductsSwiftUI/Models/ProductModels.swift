@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct ProductModel: Codable {
+struct ProductListModel: Codable {
+    let products: [ProductModel]
+}
+struct ProductModel: Codable, Hashable {
     let id: Int
     let title: String?
     let description: String?
@@ -28,15 +31,18 @@ struct ProductModel: Codable {
 //}
 
 
-struct ProductCommentModel: Codable {
+struct ProductCommentsModel: Codable {
+    let comments: [ProductCommentModel]
+}
+struct ProductCommentModel: Codable, Hashable {
     let id: Int
     let body: String
     let postId: Int
     let likes: Int
-    let user: ProductCommentUserModel
+//    let user: ProductCommentUserModel
 }
 
-struct ProductCommentUserModel: Codable {
+struct ProductCommentUserModel: Codable, Hashable {
     let id: Int
     let username: String
     let fullname: String

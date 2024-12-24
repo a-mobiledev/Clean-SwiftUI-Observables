@@ -8,8 +8,8 @@
 import Foundation
 
 protocol ProductsWebRepository: WebService {
-    func fetchProductList() async throws -> [ProductModel]
-    func fetchProductComments() async throws -> [ProductCommentModel]
+    func fetchProductList() async throws -> ProductListModel
+    func fetchProductComments() async throws -> ProductCommentsModel
 }
 
 struct RealProductsWebRepository: ProductsWebRepository {
@@ -23,12 +23,13 @@ struct RealProductsWebRepository: ProductsWebRepository {
         self.baseURL = baseURL
     }
     
-    func fetchProductList() async throws -> [ProductModel] {
+    func fetchProductList() async throws -> ProductListModel {
         let productListNetworkRequest = DefaultNetworkRequest(path: APIEndPoint.products, method: .get)
         return try await request(request: productListNetworkRequest)
+        
     }
     
-    func fetchProductComments() async throws -> [ProductCommentModel] {
+    func fetchProductComments() async throws -> ProductCommentsModel {
         let productCommentsNetworkRequest = DefaultNetworkRequest(path: APIEndPoint.comments, method: .get)
         return try await request(request: productCommentsNetworkRequest)
     }
