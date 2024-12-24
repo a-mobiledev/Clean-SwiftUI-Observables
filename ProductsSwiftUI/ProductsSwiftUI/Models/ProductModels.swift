@@ -39,13 +39,13 @@ struct ProductCommentModel: Codable, Hashable {
     let body: String
     let postId: Int
     let likes: Int
-//    let user: ProductCommentUserModel
+    let user: ProductCommentUserModel
 }
 
 struct ProductCommentUserModel: Codable, Hashable {
     let id: Int
     let username: String
-    let fullname: String
+    let fullName: String
 }
 
 //extension ProductDataCommentsDTO {
