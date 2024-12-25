@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProductDetailView: View {
     var item: ProductModel
@@ -19,7 +20,7 @@ struct ProductDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-//            HeaderImageView(urlString: item.image, height: 150)
+            HeaderImageView(urlString: item.thumbnail ?? "", height: 150)
             Text(item.title ?? "").font(.title)
             HStack{
                 Text("\(item.price ?? 0.0)")
