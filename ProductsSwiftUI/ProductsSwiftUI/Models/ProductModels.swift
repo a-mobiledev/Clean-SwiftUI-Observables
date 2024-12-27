@@ -7,10 +7,13 @@
 
 import Foundation
 
-struct ProductListModel: Codable {
+// Product Listing
+@Observable
+class ProductListModel: Codable, Identifiable {
     let products: [ProductModel]
 }
-struct ProductModel: Codable, Hashable {
+@Observable
+class ProductModel: Codable, Identifiable {
     let id: Int
     let title: String?
     let description: String?
@@ -22,19 +25,31 @@ struct ProductModel: Codable, Hashable {
     let category: String?
     let thumbnail: String?
     let images: [String]?
+    
+    var isFavourite: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case description
+        case price
+        case discountPercentage
+        case rating
+        case stock
+        case brand
+        case category
+        case thumbnail
+        case images
+    }
 }
 
-//extension ProductDataListDTO {
-//    func toDomain() -> ProductDomainListDTO {
-//        .init(productId: productId, title: title ?? "" , description: description ?? "", category: category ?? "", price: price ?? 0, thumbnail: thumbnail ?? "")
-//    }
-//}
-
-
-struct ProductCommentsModel: Codable {
+// Product Comments
+@Observable
+class ProductCommentsModel: Codable, Identifiable {
     let comments: [ProductCommentModel]
 }
-struct ProductCommentModel: Codable, Hashable {
+@Observable
+class ProductCommentModel: Codable, Identifiable {
     let id: Int
     let body: String
     let postId: Int
@@ -42,14 +57,9 @@ struct ProductCommentModel: Codable, Hashable {
     let user: ProductCommentUserModel
 }
 
-struct ProductCommentUserModel: Codable, Hashable {
+@Observable
+class ProductCommentUserModel: Codable, Identifiable {
     let id: Int
     let username: String
     let fullName: String
 }
-
-//extension ProductDataCommentsDTO {
-//    func toDomain() -> ProductDomainCommentsDTO {
-//        .init(commentId: self.commentId, body: body, postId: postId, likes: likes, user: user)
-//    }
-//}

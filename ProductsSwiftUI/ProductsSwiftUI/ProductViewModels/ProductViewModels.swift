@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ProductListViewModel: ObservableObject {
+protocol ProductListViewModel {
     
     var products: [ProductModel] {get set}
     var isError: Bool {get}
@@ -19,11 +19,12 @@ protocol ProductListViewModel: ObservableObject {
     func fetchProducts() async
 }
 
+@Observable
 class RealProductListViewModel: ProductListViewModel {
     
-    @Published var products: [ProductModel] = []
-    @Published var isError: Bool = false
-    @Published var error: String = ""
+    var products: [ProductModel] = []
+    var isError: Bool = false
+    var error: String = ""
     var isEmpty: Bool { return products.isEmpty }
     var title: String = AppConstant.productListTitle
     private let productsInteractor: ProductsInteractor!
@@ -53,7 +54,7 @@ class RealProductListViewModel: ProductListViewModel {
 }
 
 
-protocol ProductCommentsViewModel: ObservableObject {
+protocol ProductCommentsViewModel {
     
     var comments: [ProductCommentModel] {get set}
     var isError: Bool {get}
@@ -64,10 +65,11 @@ protocol ProductCommentsViewModel: ObservableObject {
     func fetchComments() async
 }
 
+@Observable
 class RealProductCommentsViewModel: ProductCommentsViewModel {
-    @Published var comments: [ProductCommentModel] = []
-    @Published var isError: Bool = false
-    @Published var error: String = ""
+    var comments: [ProductCommentModel] = []
+    var isError: Bool = false
+    var error: String = ""
     var isEmpty: Bool { return comments.isEmpty }
     private let productInteractor: ProductsInteractor!
     
