@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProductListItemView: View {
-    
     var item: ProductModel
     
     var body: some View {
@@ -20,6 +19,5 @@ struct ProductListItemView: View {
                 .font(.title2)
         }
         .preferredColorScheme(.light)
-        
     }
 }

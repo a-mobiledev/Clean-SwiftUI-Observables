@@ -9,11 +9,7 @@ import SwiftUI
 
 struct ProductListView: View {
     
-    @ObservedObject private var productViewModel: RealProductListViewModel
-    
-    init(productViewModel: RealProductListViewModel) {
-        self.productViewModel = productViewModel
-    }
+    @Environment(RealProductListViewModel.self) private var productViewModel
     
     var body: some View {
         NavigationStack{
@@ -22,7 +18,7 @@ struct ProductListView: View {
                 ProgressView()
                     .progressViewStyle(.circular)
             } else {
-                ProductListLayout(items: productViewModel.products)
+                ProductListLayout(products: productViewModel.products)
                     .overlay {
                         if productViewModel.isError {
                             ErrorView(errorTitle: AppConstant.errorTitle, errorDescription: productViewModel.error) {

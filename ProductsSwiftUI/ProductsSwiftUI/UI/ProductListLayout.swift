@@ -9,23 +9,24 @@ import SwiftUI
 
 struct ProductListLayout: View {
     
-    let items: [ProductModel]
+    let products: [ProductModel]
     let columns = [GridItem(.adaptive(minimum: 120), spacing: 20)]
+    @State private var productCommentsViewModel = DIContainer.shared.viewModels.productCommentsViewModel as! RealProductCommentsViewModel
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(items, id: \.id) { item in
-                    NavigationLink(value: item) {
-                        ProductListItemView(item: item)
+                ForEach(products, id: \.id) { product in
+                    
+                    NavigationLink {
+                        ProductDetailView(product: product)
+                            .environment(productCommentsViewModel)
+                    } label: {
+                        ProductListItemView(item: product)
                     }
                 }
             }
             .padding(20)
         }
-        .navigationDestination(for: ProductModel.self) { item in
-            ProductDetailView(item: item, productCommentsViewModel: DIContainer.shared.viewModels.productCommentsViewModel as! RealProductCommentsViewModel)
-        }
     }
 }
-

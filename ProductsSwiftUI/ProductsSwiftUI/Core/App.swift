@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct MainApp: App {
+    @State private var productViewModel = DIContainer.shared.viewModels.productsViewModel as! RealProductListViewModel
     
     var body: some Scene {
         WindowGroup {
-            ProductListView(productViewModel: DIContainer.shared.viewModels.productsViewModel as! RealProductListViewModel)
+            ProductListView()
+                .environment(productViewModel)
         }
     }
 }

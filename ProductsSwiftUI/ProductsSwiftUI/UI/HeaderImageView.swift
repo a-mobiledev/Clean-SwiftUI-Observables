@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct HeaderImageView: View {
-    
     let urlString: String
     let height: CGFloat
     
