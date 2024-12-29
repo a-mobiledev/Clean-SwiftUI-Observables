@@ -27,6 +27,24 @@ struct ProductDetailView: View {
                         .foregroundStyle(.yellow)
                 }
             }
+            Spacer(minLength: 20)
+            if productCommentsViewModel.shouldShowLoader() {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else {
+                Text("Reviews")
+                    .padding(.leading, 10)
+                    .font(.headline)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(productCommentsViewModel.comments, id: \.id) { comment in
+                            ProductCommentView(comment: comment)
+                                .padding(5)
+                        }
+                        .listStyle(.plain)
+                    }
+                }
+            }
         }
         .preferredColorScheme(.light)
         .task {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		697BF3442D1BD5A5001964D0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 697BF3432D1BD5A5001964D0 /* Kingfisher */; };
+		697BF36C2D216AFB001964D0 /* ProductCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB942D1925B300F37D7E /* ProductCommentView.swift */; };
+		697BF38C2D21B5CC001964D0 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697BF38B2D21B5CC001964D0 /* Theme.swift */; };
 		698945C92D1692D300020257 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698945C82D1692D300020257 /* App.swift */; };
 		698945CD2D1692D500020257 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 698945CC2D1692D500020257 /* Assets.xcassets */; };
 		698945D02D1692D500020257 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 698945CF2D1692D500020257 /* Preview Assets.xcassets */; };
@@ -23,7 +25,6 @@
 		69A3EB8F2D19258E00F37D7E /* ProductListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB8E2D19258E00F37D7E /* ProductListLayout.swift */; };
 		69A3EB912D19259D00F37D7E /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB902D19259D00F37D7E /* ErrorView.swift */; };
 		69A3EB932D1925A800F37D7E /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB922D1925A800F37D7E /* ProductDetailView.swift */; };
-		69A3EB952D1925B300F37D7E /* ProductCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB942D1925B300F37D7E /* ProductCommentView.swift */; };
 		69A3EBA22D192D3500F37D7E /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB962D192D3500F37D7E /* WebService.swift */; };
 		69A3EBA32D192D3500F37D7E /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB972D192D3500F37D7E /* NetworkConfig.swift */; };
 		69A3EBA42D192D3500F37D7E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A3EB982D192D3500F37D7E /* NetworkError.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		697BF38B2D21B5CC001964D0 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		698945C52D1692D300020257 /* ProductsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		698945C82D1692D300020257 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		698945CC2D1692D500020257 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		69A3EBAF2D193EF500F37D7E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				697BF38B2D21B5CC001964D0 /* Theme.swift */,
 				69A3EBB02D193F1400F37D7E /* AppConstants.swift */,
 			);
 			path = Common;
@@ -492,15 +495,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				697BF38C2D21B5CC001964D0 /* Theme.swift in Sources */,
 				69A3EBAC2D192D3500F37D7E /* URLSessionProtocol.swift in Sources */,
 				69A3EBA22D192D3500F37D7E /* WebService.swift in Sources */,
 				69A3EB892D19255D00F37D7E /* ProductListView.swift in Sources */,
 				69A3EB932D1925A800F37D7E /* ProductDetailView.swift in Sources */,
 				69A3EBA52D192D3500F37D7E /* NetworkManager.swift in Sources */,
-				69A3EB952D1925B300F37D7E /* ProductCommentView.swift in Sources */,
 				69A3EB822D1922FA00F37D7E /* ProductsWebRepository.swift in Sources */,
 				69A3EBAB2D192D3500F37D7E /* URLRequestCreater.swift in Sources */,
 				69A3EB7E2D1922B600F37D7E /* ProductsInteractor.swift in Sources */,
+				697BF36C2D216AFB001964D0 /* ProductCommentView.swift in Sources */,
 				69A3EBA62D192D3500F37D7E /* NetworkRequest.swift in Sources */,
 				69A3EBA42D192D3500F37D7E /* NetworkError.swift in Sources */,
 				69A3EBA72D192D3500F37D7E /* NetworkSessionManager.swift in Sources */,
