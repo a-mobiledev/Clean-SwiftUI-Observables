@@ -36,7 +36,12 @@ class RealProductListViewModel: ProductListViewModel {
     @MainActor
     func fetchProducts() async {
         do {
-            self.products = try await productsInteractor.fetchProducts()
+            // Perform the API call on a background thread
+            let fetchedProducts = try await Task.detached {
+                try await self.productsInteractor.fetchProducts()
+            }.value
+            
+            self.products = fetchedProducts
             self.isError = false
         } catch {
             self.isError = true
