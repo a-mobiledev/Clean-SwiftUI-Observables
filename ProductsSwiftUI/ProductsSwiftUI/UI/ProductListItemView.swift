@@ -17,6 +17,8 @@ struct ProductListItemView: View {
             Text("\(item.price ?? 0.0)")
                 .foregroundStyle(.red)
                 .font(.title2)
+            Image(systemName: item.isFavourite == true ? "star.fill" : "")
+                    
         }
         .preferredColorScheme(.light)
     }
