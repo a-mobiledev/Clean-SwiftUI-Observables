@@ -14,6 +14,7 @@ protocol ProductListViewModel {
     var error: String {get}
     var isEmpty: Bool {get}
     var title: String {get}
+    var isRefreshing: Bool {get}
     
     func shouldShowLoader() -> Bool
     func fetchProducts() async
@@ -27,28 +28,36 @@ class RealProductListViewModel: ProductListViewModel {
     var error: String = ""
     var isEmpty: Bool { return products.isEmpty }
     var title: String = AppConstant.productListTitle
+    var isRefreshing: Bool = false
     private let productsInteractor: ProductsInteractor!
-
+    private let networkPublisher = NetworkPublisher()
+    private var isConnected: Bool = true
+    
     init(productsInteractor: ProductsInteractor!) {
         self.productsInteractor = productsInteractor
+        networkPublisher.subscribe { status in
+            self.isConnected = status
+        }
     }
     
     @MainActor
     func fetchProducts() async {
         do {
             // Perform the API call on a background thread
-            let fetchedProducts = try await Task.detached {
-                try await self.productsInteractor.fetchProducts()
-            }.value
-            
+            let fetchedProducts = try await  self.productsInteractor.fetchProducts()
             self.products = fetchedProducts
             self.isError = false
         } catch {
-            self.isError = true
-            if let networkError = error as? NetworkError {
-                self.error = networkError.description
-            } else {
-                self.error = error.localizedDescription
+            if !self.isConnected {
+                try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+            }
+            if self.products.count == 0 {
+                self.isError = true
+                if let networkError = error as? NetworkError {
+                    self.error = networkError.description
+                } else {
+                    self.error = error.localizedDescription
+                }
             }
         }
     }
@@ -112,3 +121,4 @@ class RealProductCommentsViewModel: ProductCommentsViewModel {
     
     
     
+

@@ -30,6 +30,10 @@ struct ProductListView: View {
                     }
                 .navigationTitle(AppConstant.productListTitle)
                 .navigationBarTitleDisplayMode(.large)
+                .refreshable {
+                    await fetchProducts()
+                    try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+                }
             }
         }
         .task {
